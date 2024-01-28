@@ -31,8 +31,11 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['cy-django-blog-486df1fc929f.herokuapp.com',
-                 '8000-lanreandero-ci-pp4-djang-o7oib8qswl.us2.codeanyapp.com', 'localhost']
+ALLOWED_HOSTS = [
+    'cy-django-blog-486df1fc929f.herokuapp.com',
+    '8000-lanreandero-ci-pp4-djang-o7oib8qswl.us2.codeanyapp.com',
+    'localhost'
+]
 
 
 # Application definition
@@ -100,16 +103,28 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': (
+            'django.contrib.auth.password_validation.'
+            'UserAttributeSimilarityValidator',
+            )
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': (
+            'django.contrib.auth.password_validation.'
+            'MinimumLengthValidator',
+        )
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': (
+            'django.contrib.auth.password_validation.'
+            'CommonPasswordValidator',
+        )
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': (
+            'django.contrib.auth.password_validation.'
+            'NumericPasswordValidator',
+        )
     },
 ]
 
