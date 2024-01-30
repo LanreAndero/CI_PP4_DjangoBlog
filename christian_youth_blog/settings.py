@@ -66,8 +66,8 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 # Add Allauth URLs
-from django.urls import reverse_lazy
-ACCOUNT_LOGOUT_REDIRECT_URL = reverse_lazy('account_login')
+# from django.urls import reverse_lazy
+# ACCOUNT_LOGOUT_REDIRECT_URL = reverse_lazy('account_login')
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
