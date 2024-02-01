@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 from pathlib import Path
 from django.contrib.messages import constants as messages
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 import dj_database_url
 if os.path.isfile("env.py"):
     import env
@@ -33,9 +36,12 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-CSRF_TRUSTED_ORIGINS = ['https://8000-lanreandero-cipp4django-b42ah2no9xi.ws-eu107.gitpod.io']
-
-ALLOWED_HOSTS = ['cy-django-blog-486df1fc929f.herokuapp.com', '8000-lanreandero-cipp4django-b42ah2no9xi.ws-eu107.gitpod.io', 'localhost']
+ALLOWED_HOSTS = [
+    'cy-django-blog-486df1fc929f.herokuapp.com',
+    'https://8000-lanreandero-cipp4django-b42ah2no9xi.ws-eu107.gitpod.io',
+    '8000-lanreandero-cipp4django-b42ah2no9xi.ws-eu107.gitpod.io', 
+    'localhost',
+]
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
@@ -58,6 +64,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
     'django_summernote',
     'blog',
 ]
@@ -76,6 +83,14 @@ MESSAGE_TAGS = {
         messages.WARNING: 'alert-warning',
         messages.ERROR: 'alert-danger',
     }
+
+
+cloudinary.config(
+    cloud_name='dmwocs4qe',
+    api_key='134374111236266',
+    api_secret='Jq2ddAoUbCj59Epng85km0hojOA',
+    secure=True
+)
 
 CSRF_COOKIE_SECURE = True
 
@@ -126,6 +141,12 @@ WSGI_APPLICATION = 'christian_youth_blog.wsgi.application'
 
 DATABASES = {'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))}
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://8000-lanreandero-cipp4django-b42ah2no9xi.ws-eu107.gitpod.io', 
+    "https://*.herokuapp.com",
+    "https://*.gitpodapp.com",
+]
+
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
@@ -147,7 +168,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
-    # Other backends...
+    'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 

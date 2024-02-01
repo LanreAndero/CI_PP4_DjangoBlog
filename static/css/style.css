@@ -12,11 +12,21 @@ body {
     background-color: antiquewhite;
 }
 
+.nav-item {
+    color: #110101;
+    font-weight: bold;
+}
+
 #navbarText .navbar-text.mx-auto {
     color: red;
     font-weight: bold;
     text-align: center;
     width: 100%;
+}
+
+#navbarText .navbar-text.text-muted {
+    color: #111016;
+    font-weight: bold; 
 }
 
 .dark-bg {
@@ -167,10 +177,39 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-.container-image h2 {
+.home-message {
+    text-align: center;
+    font-style: italic;
     margin-top: 20px;
     font-size: 24px;
-    color: #333;
+    color: #077003;
+}
+
+.home-message .blessing {
+    text-align: center;
+    color: #140424;
+}
+
+.welcome-message {
+    text-align: center;
+    color: blueviolet;
+    margin-top: 20px;
+}
+
+@keyframes fadeInOut {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+}
+  
+.fade-in-out {
+    animation: fadeInOut 3s ease-in-out infinite;
 }
 
 footer {
