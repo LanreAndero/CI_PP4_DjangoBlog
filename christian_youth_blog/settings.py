@@ -38,8 +38,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'cy-django-blog-486df1fc929f.herokuapp.com',
-    'https://8000-lanreandero-cipp4django-b42ah2no9xi.ws-eu107.gitpod.io',
-    '8000-lanreandero-cipp4django-b42ah2no9xi.ws-eu107.gitpod.io', 
+    '8000-lanreandero-cipp4django-b42ah2no9xi.ws-eu108.gitpod.io', 
     'localhost',
 ]
 
@@ -58,9 +57,10 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'cloudinary_storage',
     'django.contrib.staticfiles',
+    'corsheaders',
     'cloudinary',
     'crispy_forms',
-    'corsheaders',
+    'crispy_bootstrap4',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -71,8 +71,10 @@ INSTALLED_APPS = [
 
 SITE_ID = 1
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/dashboard/'
 LOGOUT_REDIRECT_URL = '/'
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
@@ -141,11 +143,9 @@ WSGI_APPLICATION = 'christian_youth_blog.wsgi.application'
 
 DATABASES = {'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))}
 
-CSRF_TRUSTED_ORIGINS = [
-    'https://8000-lanreandero-cipp4django-b42ah2no9xi.ws-eu107.gitpod.io', 
-    "https://*.herokuapp.com",
-    "https://*.gitpodapp.com",
-]
+CSRF_TRUSTED_ORIGINS = ["https://8000-lanreandero-cipp4django-b42ah2no9xi.ws-eu108.gitpod.io",]
+
+CORS_ALLOWED_ORIGINS = ["https://8000-lanreandero-cipp4django-b42ah2no9xi.ws-eu108.gitpod.io",]
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

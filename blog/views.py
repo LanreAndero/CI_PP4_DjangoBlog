@@ -3,6 +3,8 @@ from django.views import generic, View
 from django.http import HttpResponseRedirect
 from .models import Post
 from .forms import CommentForm
+from django.contrib.auth.decorators import login_required
+from .forms import PostForm
 
 
 class PostList(generic.ListView):
@@ -33,7 +35,7 @@ class PostDetail(View):
                 "comment_form": CommentForm()
             },
         )
-
+    
     def post(self, request, slug, *args, **kwargs):
 
         queryset = Post.objects.filter(status=1)
@@ -64,6 +66,28 @@ class PostDetail(View):
                 "liked": liked
             },
         )
+
+@login_required
+def dashboard_view(request):
+    # Fetch posts for the logged-in user
+    user_posts = Post.objects.filter(author=request.user).order_by("-created_on")
+
+    # If the form is submitted, process it
+    if request.method == 'POST':
+        post_form = PostForm(request.POST)
+        if post_form.is_valid():
+            new_post = post_form.save(commit=False)
+            new_post.author = request.user
+            new_post.save()
+            return redirect('dashboard')  # Redirect to the dashboard after creating the post
+    else:
+        post_form = PostForm()
+
+    return render(
+        request,
+        "dashboard.html",
+        {"user_posts": user_posts, "post_form": post_form}
+    )
 
 
 class PostLike(View):

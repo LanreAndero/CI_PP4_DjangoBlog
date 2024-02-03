@@ -5,7 +5,7 @@
 {% block content %}
     <div class="welcome-message"><h1 class="fade-in-out">Welcome to Our Christian Youth Blog!</h1></div>
     <div class="container-image">
-        <img src="{% static 'images/bg-image.png' %}" alt="Main Image">
+        <img src="https://res.cloudinary.com/dmwocs4qe/image/upload/v1706854088/bg-image_sharp_ccfige.webp" alt="Main Image">
     </div>
     <div class="home-message">
         <p>
@@ -24,36 +24,35 @@
             <div class="col-12 mt-3 left">
                 <div class="row">
                     {% for post in post_list %}
-                    <div class="col-md-4">
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <div class="image-container">
-                                    {% if "placeholder" in post.featured_image.url %}
-                                    <img class="card-img-top"
-                                        src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg">
-                                    {% else %}
-                                    <img class="card-img-top" src=" {{ post.featured_image.url }}">
-                                    {% endif %}
-                                    <div class="image-flash">
-                                        <p class="author">Author: {{ post.author }}</p>
+                        <div class="col-md-4">
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <div class="image-container">
+                                        {% if "placeholder" in post.featured_image.url %}
+                                        <img class="card-img-top"
+                                            src="https://res.cloudinary.com/dmwocs4qe/image/upload/v1706854089/default_sharp_bizfdt.png">
+                                        {% else %}
+                                        <img class="card-img-top" src=" {{ post.featured_image.url }}">
+                                        {% endif %}
+                                        <div class="image-flash">
+                                            <p class="author">Author: {{ post.author }}</p>
+                                        </div>
                                     </div>
+                                    <a href="{% url 'post_detail' post.slug  %}" class="post-link">
+                                        <h2 class="card-title">{{ post.title }}</h2>
+                                        <p class="card-text">{{ post.excerpt }}</p>
+                                    </a>
+                                    <hr />
+                                    <p class="card-text text-muted h6">{{ post.created_on}} <i class="far fa-heart"></i>
+                                        {{ post.number_of_likes }}</p>
                                 </div>
-                                <a href="{% url 'post_detail' post.slug  %}" class="post-link">
-                                    <h2 class="card-title">{{ post.title }}</h2>
-                                    <p class="card-text">{{ post.excerpt }}</p>
-                                </a>
-                                <hr />
-                                <p class="card-text text-muted h6">{{ post.created_on}} <i class="far fa-heart"></i>
-                                    {{ post.number_of_likes }}</p>
                             </div>
                         </div>
-                    </div>
                     {% if forloop.counter|divisibleby:3 %}
                 </div>
                 <div class="row">
                     {% endif %}
                     {% endfor %}
-    
                 </div>
             </div>
         </div>
@@ -65,7 +64,6 @@
                 {% endif %}
                 {% if page_obj.has_next %}
                 <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
-    
                 {% endif %}
             </ul>
         </nav>
