@@ -36,6 +36,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dashboard' %}">Create Post</a>
+                    </li>
                     {% else %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
@@ -58,6 +61,21 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 offset-md-2">
+                {% if user.is_authenticated %}
+                    {% if not user.blog_posts.exists %}
+                        <div class="alert alert-info alert-dismissible fade show" role="alert">
+                            Welcome! You haven't created a post yet.
+                            <a href="{% url 'dashboard' %}" class="alert-link">Create Post</a>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-info alert-dismissible fade show" role="alert">
+                            Welcome back, {{ user.username }}! Check out the latest blog posts or create new post.
+                            <a href="{% url 'dashboard' %}" class="alert-link">Create Post</a>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endif %}
+                {% endif %}
                 {% for message in messages %}
                 <div class="alert {{ message.tags }} alert-dismissible fade show" id="msg" role="alert">
                     {{ message | safe }}
@@ -90,9 +108,13 @@
 
     <script>
         setTimeout(function () {
-            let messages = document.getElementById('msg');
-            let alert = new bootstrap.Alert(messages);
-            alert.close();
+            let messages = document.querySelectorAll('.alert');
+            messages.forEach(function(message) {
+                let alert = new bootstrap.Alert(message);
+                setTimeout(function() {
+                    alert.close();
+                }, 5000);
+            });
         }, 3000);
     </script>
 
