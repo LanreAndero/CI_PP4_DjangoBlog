@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="icon" href="https://res.cloudinary.com/dmwocs4qe/image/upload/v1707156677/favicon_hjrvm3.ico">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 </head>
@@ -61,21 +62,6 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 offset-md-2">
-                {% if user.is_authenticated %}
-                    {% if not user.blog_posts.exists %}
-                        <div class="alert alert-info alert-dismissible fade show" role="alert">
-                            Welcome! You haven't created a post yet.
-                            <a href="{% url 'dashboard' %}" class="alert-link">Create Post</a>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    {% else %}
-                        <div class="alert alert-info alert-dismissible fade show" role="alert">
-                            Welcome back, {{ user.username }}! Check out the latest blog posts or create new post.
-                            <a href="{% url 'dashboard' %}" class="alert-link">Create Post</a>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    {% endif %}
-                {% endif %}
                 {% for message in messages %}
                 <div class="alert {{ message.tags }} alert-dismissible fade show" id="msg" role="alert">
                     {{ message | safe }}
@@ -98,26 +84,23 @@
         <div class="container text-center text-white">
             <p class="m-0">&copy; 2024 Made by Lanre James Andero</p>
             <p class="m-0">Follow us:
-                <a href="#" class="social-icon" target="_blank"><i class="fab fa-facebook-square ms-3"></i></a>
-                <a href="#" class="social-icon" target="_blank"><i class="fab fa-twitter-square ms-3"></i></a>
-                <a href="#" class="social-icon" target="_blank"><i class="fab fa-instagram-square ms-3"></i></a>
-                <a href="#" class="social-icon" target="_blank"><i class="fab fa-youtube-square ms-3"></i></a>
+                <a href="https://www.facebook.com" class="social-icon" target="_blank"><i class="fab fa-facebook-square ms-3"></i></a>
+                <a href="https://twitter.com" class="social-icon" target="_blank"><i class="fab fa-twitter-square ms-3"></i></a>
+                <a href="https://www.instagram.com" class="social-icon" target="_blank"><i class="fab fa-instagram-square ms-3"></i></a>
+                <a href="https://www.youtube.com" class="social-icon" target="_blank"><i class="fab fa-youtube-square ms-3"></i></a>
             </p>
+            
         </div>
     </footer>
 
     <script>
         setTimeout(function () {
-            let messages = document.querySelectorAll('.alert');
-            messages.forEach(function(message) {
-                let alert = new bootstrap.Alert(message);
-                setTimeout(function() {
-                    alert.close();
-                }, 5000);
-            });
-        }, 3000);
+            let messages = document.getElementById('msg');
+            let alert = new bootstrap.Alert(messages);
+            alert.close();
+        }, 5000);
     </script>
-
+    
     <!-- Bootstrap JS bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"

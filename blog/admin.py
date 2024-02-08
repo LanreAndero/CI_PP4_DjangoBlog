@@ -6,11 +6,17 @@ from django_summernote.admin import SummernoteModelAdmin
 @admin.register(Post)
 class PostAdmin(SummernoteModelAdmin):
 
-    list_display = ('title', 'slug', 'status', 'created_on')
+    list_display = ('title', 'slug', 'status', 'created_on', 'approved')
     search_fields = ['title', 'content']
-    list_filter = ('status', 'created_on')
+    list_filter = ('status', 'created_on', 'approved')
     prepopulated_fields = {'slug': ('title',)}
     summernote_fields = ('content',)
+    actions = ['approve_posts']
+
+    def approve_posts(self, request, queryset):
+        queryset.update(approved=True)
+
+    approve_posts.short_description = "Approve selected posts"
 
 
 @admin.register(Comment)
@@ -23,3 +29,4 @@ class CommentAdmin(admin.ModelAdmin):
 
     def approve_comments(self, request, queryset):
         queryset.update(approved=True)
+

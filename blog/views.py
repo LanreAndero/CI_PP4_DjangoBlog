@@ -1,19 +1,28 @@
-from django.shortcuts import render, get_object_or_404, reverse
+from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views import generic, View
-from django.utils.text import slugify
 from django.http import HttpResponseRedirect
-from .models import Post
-from .forms import CommentForm
+from .forms import CommentForm, PostForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import views as auth_views
+from django.contrib.auth.decorators import user_passes_test
 from django.utils.safestring import mark_safe
 from django.urls import reverse
-from .forms import PostForm
+from .models import Post
+from django.contrib import messages
+from django.contrib.admin.views.decorators import staff_member_required
+from django.conf import settings
+from django.dispatch import receiver
+from django.utils.text import slugify
+
+
+def should_approve_user_posts():
+    print("Checking whether user posts should be approved")
+    return settings.SHOULD_APPROVE_USER_POSTS
 
 
 class PostList(generic.ListView):
     model = Post
-    queryset = Post.objects.filter(status=1).order_by("-created_on")
+    queryset = Post.objects.filter(status=1, approved=True).order_by("-created_on")
     template_name = "index.html"
     paginate_by = 6
 
@@ -43,7 +52,7 @@ class PostDetail(View):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['comment_form'] = CommentForm()
-        context['post_form'] = PostForm()  # Add this line
+        context['post_form'] = PostForm()
         return context
 
     def post(self, request, slug, *args, **kwargs):
@@ -76,44 +85,93 @@ class PostDetail(View):
             },
         )
 
+
 @login_required
 def dashboard_view(request):
-    # Fetch posts for the logged-in user
-    user_posts = Post.objects.filter(author=request.user).order_by("-created_on")
+    print("SHOULD_APPROVE_USER_POSTS setting:", settings.SHOULD_APPROVE_USER_POSTS)
 
-    # If the form is submitted, process it
     if request.method == 'POST':
         post_form = PostForm(request.POST, request.FILES)
         if post_form.is_valid():
             post = post_form.save(commit=False)
-            post.slug = slugify(post.title)  # Set the slug based on the title
-            post.author = request.user  # Assuming you're associating the post with the current user
+            post.author = request.user
+
+            # Set the slug before saving
+            if not post.slug or post.slug == 'placeholder':
+                post.slug = slugify(post.title)
+
+                # Make the slug unique
+                if Post.objects.filter(slug=post.slug).exists():
+                    post.slug = f"{post.slug}-{post.id}"
+
+            print("Generated Slug:", post.slug)
+
+            if should_approve_user_posts():
+                print("User posts need approval.")
+                post.approved = False
+                messages.success(request, 'Post created and awaiting approval!')
+            else:
+                print("User posts do not need approval.")
+                post.approved = True  # Approve the post automatically
+                messages.success(request, 'Post created successfully!')
+
             post.save()
-            return redirect('home')  # Replace 'home' with the URL name of your home page
+
+            return redirect('home')
+        else:
+            messages.error(request, 'Error creating post. Please check the form.')
     else:
         post_form = PostForm()
 
-    return render(
-        request,
-        "dashboard.html",
-        {"user_posts": user_posts, "post_form": PostForm()}
-    )
+    # Retrieve all posts created by the user, regardless of approval status
+    user_posts = Post.objects.filter(author=request.user)
 
-def custom_login(request, *args, **kwargs):
-    # Call Django's built-in login view
-    response = auth_views.login(request, *args, **kwargs)
+    return render(request, 'dashboard.html', {'post_form': post_form, 'user_posts': user_posts})
 
-    # Check if the login was successful
-    if request.user.is_authenticated:
-        # Check if the user has created a post
-        if request.user.blog_posts.exists():
-            # User has created a post, display a welcome message
-            messages.info(request, 'Welcome back! Check out the latest blog posts.')
-        else:
-            # User hasn't created a post, display a message with a link to create one
-            messages.info(request, 'Welcome! You haven\'t created a post yet. <a href="{% url \'dashboard\' %}">Create Post</a>')
 
-    return response
+
+def edit_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id, author=request.user)
+
+    if request.method == 'POST':
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect('post_detail', slug=post.slug)
+    else:
+        form = PostForm(instance=post)
+
+    return render(request, 'edit_post.html', {'form': form, 'post': post})
+
+
+def delete_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id, author=request.user)
+
+    if request.method == 'POST':
+        post.delete()
+        return redirect('home')
+
+    return render(request, 'delete_post.html', {'post': post})
+
+
+@staff_member_required
+def post_approval_view(request):
+    if request.method == 'POST':
+        post_id = request.POST.get('post_id')
+        action = request.POST.get('action')
+
+        post = get_object_or_404(Post, id=post_id)
+        if action == 'approve':
+            post.approved = True
+            post.save()
+            messages.success(request, 'Post approved successfully!')
+        elif action == 'reject':
+            post.delete()
+            messages.success(request, 'Post rejected successfully!')
+
+    pending_posts = Post.objects.filter(approved=False)
+
+    return render(request, 'post_approval.html', {'pending_posts': pending_posts})
 
 
 class PostLike(View):

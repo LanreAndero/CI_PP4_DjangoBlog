@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 import os
 from pathlib import Path
+from django.conf import settings
 from django.contrib.messages import constants as messages
 import cloudinary
 import cloudinary.uploader
@@ -34,7 +35,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     'cy-django-blog-486df1fc929f.herokuapp.com',
@@ -91,8 +92,26 @@ cloudinary.config(
     cloud_name='dmwocs4qe',
     api_key='134374111236266',
     api_secret='Jq2ddAoUbCj59Epng85km0hojOA',
-    secure=True
+    secure=True,
 )
+
+DJANGO_SUMMERNOTE_CONFIG = {
+    'iframe': False,
+    'summernote': {
+        'width': '100%',
+        'height': '480',
+        'toolbar': [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['fontname', ['fontname']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video']],
+            ['view', ['fullscreen', 'codeview']],
+        ],
+    },
+}
 
 CSRF_COOKIE_SECURE = True
 
@@ -143,9 +162,17 @@ WSGI_APPLICATION = 'christian_youth_blog.wsgi.application'
 
 DATABASES = {'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))}
 
+
 CSRF_TRUSTED_ORIGINS = ["https://8000-lanreandero-cipp4django-b42ah2no9xi.ws-eu108.gitpod.io",]
 
+
 CORS_ALLOWED_ORIGINS = ["https://8000-lanreandero-cipp4django-b42ah2no9xi.ws-eu108.gitpod.io",]
+
+
+SHOULD_APPROVE_USER_POSTS = True
+
+# SHOULD_APPROVE_USER_POSTS = getattr(settings, 'SHOULD_APPROVE_USER_POSTS', False)
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

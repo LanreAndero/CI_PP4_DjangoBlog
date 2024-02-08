@@ -113,6 +113,14 @@
             </div>
         </div>
     </div>
+    {% if user.is_authenticated and user == post.author %}
+      <div class="row">
+        <div class="col">
+          <a href="{% url 'edit_post' post_id=post.id %}" class="btn btn-primary">Edit</a>
+          <a href="{% url 'delete_post' post_id=post.id %}" class="btn btn-danger">Delete</a>
+        </div>
+      </div>
+    {% endif %}
 </div>
 
 {% endblock content %}

@@ -1,0 +1,19 @@
+<!-- templates/post_approval.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Pending Post Approval</h1>
+  <ul>
+    {% for post in pending_posts %}
+      <li>
+        {{ post.title }}
+        <form method="post" action="{% url 'post_approval' %}">
+          {% csrf_token %}
+          <input type="hidden" name="post_id" value="{{ post.id }}">
+          <button type="submit" name="action" value="approve">Approve</button>
+          <button type="submit" name="action" value="reject">Reject</button>
+        </form>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

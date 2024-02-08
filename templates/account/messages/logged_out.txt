@@ -1,2 +1,5 @@
 {% load i18n %}
-{% blocktrans %}You have signed out.{% endblocktrans %}
+
+{% blocktrans with user_name=user.username %}
+You have signed out, {{ user_name }}. See you again soon.
+{% endblocktrans %}
