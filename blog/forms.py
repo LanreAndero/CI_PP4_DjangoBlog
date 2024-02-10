@@ -8,7 +8,7 @@ from .models import Post
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['title', 'slug', 'content', 'featured_image', 'excerpt', 'status']
+        fields = ['title', 'content', 'featured_image']
         widgets = {'content': SummernoteWidget(),}
         
 
