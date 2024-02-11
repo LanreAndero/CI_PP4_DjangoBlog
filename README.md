@@ -4,7 +4,7 @@
 
 💻 [Visit live website](https://cy-django-blog-486df1fc929f.herokuapp.com/)
 
-![Blog Logo](https://res.cloudinary.com/dmwocs4qe/image/upload/v1706854399/logo_sharp_sqvxsv.png)
+![Home Screen](https://res.cloudinary.com/dmwocs4qe/image/upload/v1707648124/home-screen_gcv0es.png)
 
 ## About
 
@@ -129,6 +129,7 @@ Visit the Community section to participate in discussions, ask questions, and co
 
 - Django
 - Bootstrap
+- Flake8
 
 ### Libraries
 
@@ -200,7 +201,7 @@ Automated testing is not currently implemented for this blog.
 
 ## Deployment
 
-The Christian Youth Blog is live at [https://your-christian-youth-blog-url.com/]. Feel free to explore and engage with the content!
+The Christian Youth Blog is live at [https://cy-django-blog-486df1fc929f.herokuapp.com/]. Feel free to explore and engage with the content!
 
 To run the blog locally, follow these steps:
 1. Clone the repository to your local machine.

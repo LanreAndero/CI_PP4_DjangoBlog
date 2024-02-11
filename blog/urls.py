@@ -2,9 +2,7 @@ from . import views
 from django.urls import path
 from blog.views import PostList, PostDetail, dashboard_view
 from allauth.account.views import SignupView
-# from blog.views import post_approval_view
 from .views import edit_post, delete_post, about_view
-# from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [
