@@ -1,10 +1,10 @@
 # Christian Youth Blog
 
-**Developer: [Your Name]**
+**Developer: [Lanre James Andero]**
 
-💻 [Visit live website](https://your-christian-youth-blog-url.com/)
+💻 [Visit live website](https://cy-django-blog-486df1fc929f.herokuapp.com/)
 
-![Blog Logo](path-to-your-logo-image)
+![Blog Logo](https://res.cloudinary.com/dmwocs4qe/image/upload/v1706854399/logo_sharp_sqvxsv.png)
 
 ## About
 
@@ -85,27 +85,35 @@ Visit the Community section to participate in discussions, ask questions, and co
 
 ## User Stories
 
-### Users
+### Site Admin
 
-1. **As a Christian youth, I want to discover blog content that aligns with my faith and values.**
-   - The blog provides a variety of articles covering topics relevant to Christian youth.
+1. **As a Site Admin, I can create, read, update, and delete posts so that I can manage my blog content.**
 
-2. **As a reader, I want a user-friendly interface to easily navigate and read blog posts.**
-   - The blog's layout is intuitive, making it easy to find and read content.
+2. **As a Site Admin, I can create draft posts so that I can finish writing the content later.**
 
-3. **As a community member, I want to engage with other Christian youth and participate in discussions.**
-   - The Community section facilitates meaningful interactions and discussions.
+3. **As a Site Admin, I can approve or disapprove comments so that I can filter out objectionable comments.**
 
-### Site Owner
+4. **As a Site Admin, I can approve or disapprove posts so that I can filter out objectionable posts.**
 
-1. **As the site owner, I want to create a positive and inspiring online space for Christian youth.**
-   - The blog content and community features contribute to a positive user experience.
+### Site User
 
-2. **As the site owner, I want to encourage user engagement and foster a sense of community.**
-   - Community features such as comments and discussions promote engagement and connection.
+1. **As a Site User, I can receive a confirmation email after registering so that my email address could be verified.**
 
-3. **As the site owner, I want to provide valuable and diverse content that resonates with Christian youth.**
-   - Regularly updating the blog with relevant articles contributes to the diversity of content.
+2. **As a Site User, I can like or unlike a post so that I can interact with the content.**
+
+3. **As a Site User, I can view a paginated list of posts so that I can select which post I want to view.**
+
+4. **As a Site User, I can view the number of likes on each post so that I can see which is the most popular or viral.**
+
+5. **As a Site User, I can view a list of posts so that I can select one to read.**
+
+6. **As a Site User, I can click on a post so that I can read the full text.**
+
+7. **As a Site User, I can register an account so that I can comment and like.**
+
+8. **As a Site User, I can leave comments on a post so that I can be involved in the conversation.**
+
+9. **As a Site User, I can view comments on an individual post so that I can read the conversation.**
 
 
 ## Technologies Used
@@ -162,7 +170,7 @@ Visit the Community section to participate in discussions, ask questions, and co
 
 - User-friendly blog interface
 - Categorized blog posts
-- Community engagement features (comments, discussions)
+- Community engagement features (posts, comments, likes, discussions)
 - About section explaining the blog's mission
 
 ## Validation
@@ -170,6 +178,7 @@ Visit the Community section to participate in discussions, ask questions, and co
 User inputs are validated to ensure respectful and appropriate interactions within the community. For example:
 - Comments are monitored for adherence to community guidelines.
 - User-generated content is reviewed for relevance and alignment with the blog's mission.
+- Comments and posts are subject to approval from the admin.
 
 ## Testing
 
@@ -178,7 +187,7 @@ User inputs are validated to ensure respectful and appropriate interactions with
 Manual testing includes:
 - **Blog Navigation:** Ensure users can easily navigate through the blog.
 - **Reading Posts:** Verify that posts display correctly and are readable.
-- **Community Engagement:** Test the functionality of comments and discussions.
+- **Community Engagement:** Test the functionality of posts, comments, likes and discussions.
 
 ### Automated Testing
 

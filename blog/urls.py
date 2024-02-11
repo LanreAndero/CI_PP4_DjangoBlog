@@ -1,13 +1,16 @@
 from . import views
-from django.urls import path, include
-from blog.views import PostList, PostDetail, PostLike, dashboard_view
-from .views import PostDetail, dashboard_view, post_approval_view
-from .views import edit_post, delete_post
-from django.contrib.auth import views as auth_views
+from django.urls import path
+from blog.views import PostList, PostDetail, dashboard_view
+from allauth.account.views import SignupView
+# from blog.views import post_approval_view
+from .views import edit_post, delete_post, about_view
+# from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [
+    path('about/', about_view, name='about'),
     path('', PostList.as_view(), name='home'),
+    path('accounts/signup/', SignupView.as_view(), name='account_signup'),
     path('dashboard/', dashboard_view, name='dashboard'),
     path('post-approval/', views.post_approval_view, name='post_approval'),
     path('edit_post/<int:post_id>/', edit_post, name='edit_post'),

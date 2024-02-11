@@ -1,11 +1,10 @@
 {% extends "base.html" %}
-
 {% load static %}
 
 {% block content %}
     <div class="welcome-message"><h1 class="fade-in-out">Welcome to Our Christian Youth Blog!</h1></div>
     <div class="container-image">
-        <img src="https://res.cloudinary.com/dmwocs4qe/image/upload/v1706854088/bg-image_sharp_ccfige.webp" alt="Main Image">
+        <img src="https://res.cloudinary.com/dmwocs4qe/image/upload/v1707632847/youth-sharpened_km2vs5.png" alt="image of youth">
     </div>
     <div class="home-message">
         <p>
@@ -30,7 +29,7 @@
                                     <div class="image-container">
                                         {% if "placeholder" in post.featured_image.url %}
                                         <img class="card-img-top"
-                                            src="https://res.cloudinary.com/dmwocs4qe/image/upload/v1706854089/default_sharp_bizfdt.png">
+                                            src="https://res.cloudinary.com/dmwocs4qe/image/upload/v1706854089/default_sharp_bizfdt.png" alt="default image jesus">
                                         {% else %}
                                         <img class="card-img-top" src=" {{ post.featured_image.url }}">
                                         {% endif %}
@@ -42,7 +41,7 @@
                                         <h2 class="card-title">{{ post.title }}</h2>
                                         <p class="card-text">{{ post.excerpt }}</p>
                                     </a>
-                                    <hr />
+                                    <hr>
                                     <p class="card-text text-muted h6">{{ post.created_on}} <i class="far fa-heart"></i>
                                         {{ post.number_of_likes }}</p>
                                 </div>

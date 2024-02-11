@@ -3,15 +3,16 @@ from django.views import generic, View
 from django.http import HttpResponseRedirect
 from .forms import CommentForm, PostForm
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import views as auth_views
-from django.contrib.auth.decorators import user_passes_test
-from django.utils.safestring import mark_safe
-from django.urls import reverse
+from allauth.account.forms import SignupForm
+# from django.contrib.auth import views as auth_views
+# from django.contrib.auth.decorators import user_passes_test
+# from django.utils.safestring import mark_safe
+# from django.urls import reverse
 from .models import Post
 from django.contrib import messages
 from django.contrib.admin.views.decorators import staff_member_required
 from django.conf import settings
-from django.dispatch import receiver
+# from django.dispatch import receiver
 from django.utils.text import slugify
 
 
@@ -20,9 +21,22 @@ def should_approve_user_posts():
     return settings.SHOULD_APPROVE_USER_POSTS
 
 
+def signup_view(request):
+    form = SignupForm()
+    return render(request, 'account/signup.html', {'form': form})
+
+
+def about_view(request):
+    return render(request, 'about.html')
+
+
 class PostList(generic.ListView):
     model = Post
-    queryset = Post.objects.filter(status=1, approved=True).order_by("-created_on")
+    queryset = (
+        Post.objects
+        .filter(status=1, approved=True)
+        .order_by("-created_on")
+    )
     template_name = "index.html"
     paginate_by = 6
 
@@ -48,7 +62,7 @@ class PostDetail(View):
                 "comment_form": CommentForm()
             },
         )
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['comment_form'] = CommentForm()
@@ -88,7 +102,10 @@ class PostDetail(View):
 
 @login_required
 def dashboard_view(request):
-    print("SHOULD_APPROVE_USER_POSTS setting:", settings.SHOULD_APPROVE_USER_POSTS)
+    print(
+        "SHOULD_APPROVE_USER_POSTS setting:",
+        settings.SHOULD_APPROVE_USER_POSTS
+    )
 
     if request.method == 'POST':
         post_form = PostForm(request.POST, request.FILES)
@@ -109,7 +126,10 @@ def dashboard_view(request):
             if should_approve_user_posts():
                 print("User posts need approval.")
                 post.approved = False
-                messages.success(request, 'Post created and awaiting approval!')
+                messages.success(
+                    request,
+                    'Post created and awaiting approval!'
+                )
             else:
                 print("User posts do not need approval.")
                 post.approved = True  # Approve the post automatically
@@ -119,15 +139,21 @@ def dashboard_view(request):
 
             return redirect('home')
         else:
-            messages.error(request, 'Error creating post. Please check the form.')
+            messages.error(
+                request,
+                'Error creating post. Please check the form.'
+            )
     else:
         post_form = PostForm()
 
     # Retrieve all posts created by the user, regardless of approval status
     user_posts = Post.objects.filter(author=request.user)
 
-    return render(request, 'dashboard.html', {'post_form': post_form, 'user_posts': user_posts})
-
+    return render(
+        request,
+        'dashboard.html',
+        {'post_form': post_form, 'user_posts': user_posts}
+    )
 
 
 def edit_post(request, post_id):
@@ -171,11 +197,14 @@ def post_approval_view(request):
 
     pending_posts = Post.objects.filter(approved=False)
 
-    return render(request, 'post_approval.html', {'pending_posts': pending_posts})
+    return render(
+        request,
+        'post_approval.html',
+        {'pending_posts': pending_posts}
+    )
 
 
 class PostLike(View):
-    
     def post(self, request, slug, *args, **kwargs):
         post = get_object_or_404(Post, slug=slug)
         if post.likes.filter(id=request.user.id).exists():

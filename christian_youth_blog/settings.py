@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 import os
 from pathlib import Path
-from django.conf import settings
 from django.contrib.messages import constants as messages
 import cloudinary
 import cloudinary.uploader
@@ -22,24 +21,16 @@ if os.path.isfile("env.py"):
     import env
 
 
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
 ALLOWED_HOSTS = [
     'cy-django-blog-486df1fc929f.herokuapp.com',
-    '8000-lanreandero-cipp4django-b42ah2no9xi.ws-eu108.gitpod.io', 
+    '8000-lanreandero-cipp4django-b42ah2no9xi.ws-eu108.gitpod.io',
     'localhost',
 ]
 
@@ -47,7 +38,6 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 ADMIN_URL = 'admin/'
 
-# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -86,7 +76,6 @@ MESSAGE_TAGS = {
         messages.WARNING: 'alert-warning',
         messages.ERROR: 'alert-danger',
     }
-
 
 cloudinary.config(
     cloud_name='dmwocs4qe',
@@ -150,32 +139,21 @@ TEMPLATES = [
 WSGI_APPLICATION = 'christian_youth_blog.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
-# DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': BASE_DIR / 'db.sqlite3',
-#    }
-# }
-
 DATABASES = {'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))}
 
 
-CSRF_TRUSTED_ORIGINS = ["https://8000-lanreandero-cipp4django-b42ah2no9xi.ws-eu108.gitpod.io",]
+CSRF_TRUSTED_ORIGINS = [
+    "https://8000-lanreandero-cipp4django-b42ah2no9xi.ws-eu108.gitpod.io",
+]
 
 
-CORS_ALLOWED_ORIGINS = ["https://8000-lanreandero-cipp4django-b42ah2no9xi.ws-eu108.gitpod.io",]
+CORS_ALLOWED_ORIGINS = [
+    "https://8000-lanreandero-cipp4django-b42ah2no9xi.ws-eu108.gitpod.io",
+]
 
 
 SHOULD_APPROVE_USER_POSTS = True
 
-# SHOULD_APPROVE_USER_POSTS = getattr(settings, 'SHOULD_APPROVE_USER_POSTS', False)
-
-
-# Password validation
-# https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -199,9 +177,6 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/3.2/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -213,18 +188,15 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
-
 MEDIA_URL = '/media/'
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 STATIC_URL = '/static/'
-STATICFILES_STORAGE = ('cloudinary_storage.storage.StaticHashedCloudinaryStorage')
+STATICFILES_STORAGE = (
+    'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+)
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

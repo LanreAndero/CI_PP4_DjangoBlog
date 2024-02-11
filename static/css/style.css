@@ -29,6 +29,12 @@ body {
     font-weight: bold; 
 }
 
+.about-container {
+    color: #140202cf;
+    font-weight: bold;
+    text-align: center;
+}
+
 .dark-bg {
     background-color: #445261;
 }
@@ -180,13 +186,19 @@ body {
 .home-message {
     text-align: center;
     font-style: italic;
-    margin-top: 20px;
-    font-size: 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+    font-size: 30px;
     color: #077003;
+}
+
+.home-message p {
+    margin-top: 20px;
 }
 
 .home-message .blessing {
     text-align: center;
+    font-style: italic;
     color: #140424;
 }
 

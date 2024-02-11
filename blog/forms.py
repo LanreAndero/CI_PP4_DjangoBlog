@@ -1,4 +1,4 @@
-from django.utils.safestring import mark_safe
+# from django.utils.safestring import mark_safe
 from .models import Comment
 from django import forms
 from django_summernote.widgets import SummernoteWidget
@@ -9,8 +9,8 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ['title', 'content', 'featured_image']
-        widgets = {'content': SummernoteWidget(),}
-        
+        widgets = {'content': SummernoteWidget()}
+
 
 class CommentForm(forms.ModelForm):
     class Meta:
