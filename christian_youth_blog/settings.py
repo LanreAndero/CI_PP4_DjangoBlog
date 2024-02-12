@@ -147,14 +147,16 @@ DATABASES = {'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))}
 
 CSRF_TRUSTED_ORIGINS = [
     "https://8000-lanreandero-cipp4django-b42ah2no9xi.ws-eu108.gitpod.io",
-    'cy-django-blog-486df1fc929f.herokuapp.com',
+    "https://cy-django-blog-486df1fc929f.herokuapp.com"
+    "https://*.herokuapp.com",
     "https://*.gitpod.io",
 ]
 
 
 CORS_ALLOWED_ORIGINS = [
     "https://8000-lanreandero-cipp4django-b42ah2no9xi.ws-eu108.gitpod.io",
-    "https://cy-django-blog-486df1fc929f.herokuapp.com",
+    "https://cy-django-blog-486df1fc929f.herokuapp.com"
+    "https://*.herokuapp.com",
     "https://*.gitpod.io",
     "https://ui.dev",
 ]

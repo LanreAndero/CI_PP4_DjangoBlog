@@ -36,6 +36,8 @@ Welcome to the Christian Youth Blog! This platform aims to provide a space for C
   - [Credits](#credits)
   - [Acknowledgements](#acknowledgements)
   - [License](#license)
+  - [Contact](#contact)
+
 
 ## Project Goals
 
@@ -71,17 +73,24 @@ The Christian Youth Blog is designed for Christian youth aged 13-25 who seek a p
 #### Navigating the Blog
 Upon entering the blog, users will find a clean and intuitive interface. Key navigation options include:
 1. Home - Explore the latest blog posts.
-2. Categories - Browse posts based on specific topics.
-3. Community - Engage with other users through comments and discussions.
-4. About - Learn more about the blog's mission and values.
+2. About - Learn more about the blog's mission and values.
+3. Register - New users can sign up
+4. Login - Registered users can sign in
+5. Signed In - Users can create, edit and delete own posts, comments and likes/unlikes posts.
+6. Logout- Singned in users can logout of their accounts
+
+<details><summary>Home Page Navigations</summary>
+<img src="media/home-screen.png">
+</details>
 
 #### Reading Blog Posts
-Click on a post to read its full content. Users can leave comments, share posts, and bookmark favorites.
+Click on a post to read its full content. Users can leave create own posts, comments, likes/unlikes, edit and delete own posts.
 
-#### Engaging with the Community
-Visit the Community section to participate in discussions, ask questions, and connect with other Christian youth.
-
+<details><summary>Blog Posts</summary>
+<img src="media/user-can-read-post-in-full.jpg">
 </details>
+
+[Back to Table Of Contents](#table-of-contents)
 
 ## User Stories
 
@@ -94,6 +103,13 @@ Visit the Community section to participate in discussions, ask questions, and co
 3. **As a Site Admin, I can approve or disapprove comments so that I can filter out objectionable comments.**
 
 4. **As a Site Admin, I can approve or disapprove posts so that I can filter out objectionable posts.**
+
+<details><summary>Site Admin Rights</summary>
+<img src="media/admin-approved-comment.jpg">
+<img src="media/admin-approved-posts.png">
+<img src="media/admin-unapproved-comment.jpg">
+<img src="media/admin-unapproved-posts.jpg">
+</details>
 
 ### Site User
 
@@ -115,6 +131,15 @@ Visit the Community section to participate in discussions, ask questions, and co
 
 9. **As a Site User, I can view comments on an individual post so that I can read the conversation.**
 
+<details><summary>Site Users Rights</summary>
+<img src="media/user-can-create-posts.png">
+<img src="media/user-can-delete-own-posts.jpg">
+<img src="media/user-can-edit-own-posts.png">
+<img src="media/user-can-leave-comments-edit-delete-posts.png">
+<img src="media/user-can-leave-comments.jpg">
+<img src="media/user-can-like-posts.png">
+<img src="media/user-can-read-post-in-full.jpg">
+</details>
 
 ## Technologies Used
 
@@ -129,7 +154,11 @@ Visit the Community section to participate in discussions, ask questions, and co
 
 - Django
 - Bootstrap
-- Flake8
+- Flake8 - was used to check my code against Python conventions
+- W3C
+- [Font Awesome](https://fontawesome.com/) - icons from Font Awesome were used in the footer below the program terminal
+- [GitHub](https://github.com/) was used as a remote repository to store project code
+- [Heroku Platform](https://https://heroku.com/) was used to deploy the project into live environment
 
 ### Libraries
 
@@ -170,8 +199,8 @@ Visit the Community section to participate in discussions, ask questions, and co
 ## Features
 
 - User-friendly blog interface
-- Categorized blog posts
-- Community engagement features (posts, comments, likes, discussions)
+- Paginated blog posts
+- Community engagement features (posts, comments, likes/unlikes, edit and delete posts)
 - About section explaining the blog's mission
 
 ## Validation
@@ -181,6 +210,18 @@ User inputs are validated to ensure respectful and appropriate interactions with
 - User-generated content is reviewed for relevance and alignment with the blog's mission.
 - Comments and posts are subject to approval from the admin.
 
+<details><summary>Validations</summary>
+<img src="media/admin-delected-comment-validation.png">
+<img src="media/css-valdator.png">
+<img src="media/user-comment-awaiting-approva-validation.jpg">
+<img src="media/user-post-awaiting-approval-validation.jpg">
+<img src="media/user-signed-in-validation.png">
+<img src="media/user-signed-out-validation.png">
+<img src="media/admin-unapproved-posts.jpg">
+</details>
+
+[Back to Table Of Contents](#table-of-contents)
+
 ## Testing
 
 ### Manual Testing
@@ -188,36 +229,73 @@ User inputs are validated to ensure respectful and appropriate interactions with
 Manual testing includes:
 - **Blog Navigation:** Ensure users can easily navigate through the blog.
 - **Reading Posts:** Verify that posts display correctly and are readable.
-- **Community Engagement:** Test the functionality of posts, comments, likes and discussions.
+- **Community Engagement:** Test the functionality of posts, comments, likes/unlikes, edit and delete posts.
+
+<details><summary>Manual Testing</summary>
+<img src="media/home-screen.png">
+<img src="media/amiresponsive.png">
+<img src="media/auth-password-validators-pep8-error-line-too-long.png">
+<img src="media/flake8-pep8-testing.png">
+<img src="media/import-env-pep8-error-imported-not-used.png">
+<img src="media/auth-password-validators-pep8-error-line-too-long.png">
+<img src="media/lighthouse-desktop.png">
+<img src="media/lighthouse-mobile.png">
+<img src="media/css-valdator.png">
+<img src="media/user-can-read-post-in-full.jpg">
+<img src="media/user-can-leave-comments.jpg">
+<img src="media/user-can-like-posts.png">
+<img src="media/user-can-create-posts.png">
+<img src="media/user-can-leave-comments-edit-delete-posts.png">
+</details>
 
 ### Automated Testing
 
 Automated testing is not currently implemented for this blog.
 
 ## Bugs
-
+  **No known bugs
 - **Mobile Responsiveness:** Ensure optimal display and functionality on various devices.
-- **Community Features:** Continuously monitor and address any issues related to comments and discussions.
+- **Users Features:** Continuously monitor and address any issues related to posts, comments and likes.
 
 ## Deployment
 
 The Christian Youth Blog is live at [https://cy-django-blog-486df1fc929f.herokuapp.com/]. Feel free to explore and engage with the content!
 
-To run the blog locally, follow these steps:
-1. Clone the repository to your local machine.
-2. Open the 'index.html' file in a web browser.
+### Forking the GitHub Repository
+1. Go to the GitHub repository
+2. Click on Fork button in top right corner
+3. You will then have a copy of the repository in your own GitHub account.
+   
+### Making a Local Clone
+1. Go to the GitHub repository 
+2. Locate the Code button above the list of files and click it
+3. Highlight the "HTTPS" button to clone with HTTPS and copy the link
+4. Open Git Bash
+5. Change the current working directory to the one where you want the cloned directory
+6. Type git clone and paste the URL from the clipboard ($ git clone <span>https://</span>github.com/YOUR-USERNAME/YOUR-REPOSITORY)
+7. Press Enter to create your local clone
 
 ## Credits
 
 - Blog content and design created by [Lanre James Andero].
+- Code Institute - I Think Therefore I Blog Walkthrough 
+- Micheala Y Goba (https://mickeygblogs.com/) for inspiration and very resourceful content.
 
 ## Acknowledgements
 
 I would like to express gratitude to the following:
-- My mentor and advisors for their guidance and support.
-- Contributors and community members who actively engage with the blog.
-- Code Institute community for valuable resources and discussions.
+- My mentor Mo and advisors for their guidance and support.
+- Family and friends who actively engage with the blog.
+- Code Institute and Slack community for valuable resources and discussions.
 
 ## License
 
-This project is licensed under the [choose-a-license] License - see the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under the MIT License.
+
+## Contact
+
+If you have any questions or suggestions regarding the Christian Youth Blog, feel free to contact us at [lanreandero@gmai.com](mailto:lanreandero@gmail.com).
+
+Happy Coding!
+
+[Back to Table Of Contents](#table-of-contents)
