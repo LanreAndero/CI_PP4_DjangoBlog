@@ -11,6 +11,9 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'christian_youth_blog.settings')
+os.environ.setdefault(
+    'DJANGO_SETTINGS_MODULE',
+    'christian_youth_blog.settings'
+)
 
 application = get_wsgi_application()

@@ -32,6 +32,9 @@ ALLOWED_HOSTS = [
     'cy-django-blog-486df1fc929f.herokuapp.com',
     '8000-lanreandero-cipp4django-b42ah2no9xi.ws-eu108.gitpod.io',
     'localhost',
+    "http://127.0.0.1:8000",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
 ]
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
@@ -70,12 +73,12 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MESSAGE_TAGS = {
-        messages.DEBUG: 'alert-info',
-        messages.INFO: 'alert-info',
-        messages.SUCCESS: 'alert-success',
-        messages.WARNING: 'alert-warning',
-        messages.ERROR: 'alert-danger',
-    }
+    messages.DEBUG: 'alert-info',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+}
 
 cloudinary.config(
     cloud_name='dmwocs4qe',
@@ -110,12 +113,12 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'allauth.account.middleware.AccountMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'christian_youth_blog.urls'
@@ -144,11 +147,16 @@ DATABASES = {'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))}
 
 CSRF_TRUSTED_ORIGINS = [
     "https://8000-lanreandero-cipp4django-b42ah2no9xi.ws-eu108.gitpod.io",
+    'cy-django-blog-486df1fc929f.herokuapp.com',
+    "https://*.gitpod.io",
 ]
 
 
 CORS_ALLOWED_ORIGINS = [
     "https://8000-lanreandero-cipp4django-b42ah2no9xi.ws-eu108.gitpod.io",
+    "https://cy-django-blog-486df1fc929f.herokuapp.com",
+    "https://*.gitpod.io",
+    "https://ui.dev",
 ]
 
 
