@@ -81,6 +81,7 @@ Upon entering the blog, users will find a clean and intuitive interface. Key nav
 
 <details><summary>Home Page Navigations</summary>
 <img src="media/home-screen.png">
+<img src="media/user-sign-up-page.png">
 </details>
 
 #### Reading Blog Posts
@@ -113,23 +114,23 @@ Click on a post to read its full content. Users can leave create own posts, comm
 
 ### Site User
 
-1. **As a Site User, I can receive a confirmation email after registering so that my email address could be verified.**
+1. **As a Site User, I can like or unlike a post so that I can interact with the content.**
 
-2. **As a Site User, I can like or unlike a post so that I can interact with the content.**
+2. **As a Site User, I can view a paginated list of posts so that I can select which post I want to view.**
 
-3. **As a Site User, I can view a paginated list of posts so that I can select which post I want to view.**
+3. **As a Site User, I can view the number of likes on each post so that I can see which is the most popular or viral.**
 
-4. **As a Site User, I can view the number of likes on each post so that I can see which is the most popular or viral.**
+4. **As a Site User, I can view a list of posts so that I can select one to read.**
 
-5. **As a Site User, I can view a list of posts so that I can select one to read.**
+5. **As a Site User, I can click on a post so that I can read the full text.**
 
-6. **As a Site User, I can click on a post so that I can read the full text.**
+6. **As a Site User, I can register an account so that I can comment, like and unlike.**
 
-7. **As a Site User, I can register an account so that I can comment and like.**
+7. **As a Site User, I can leave comments on a post so that I can be involved in the conversation.**
 
-8. **As a Site User, I can leave comments on a post so that I can be involved in the conversation.**
+8. **As a Site User, I can view comments on an individual post so that I can read the conversation.**
 
-9. **As a Site User, I can view comments on an individual post so that I can read the conversation.**
+9. **As a Site User, I can edit and delete own posts so that I can review my conversation.**
 
 <details><summary>Site Users Rights</summary>
 <img src="media/user-can-create-posts.png">
