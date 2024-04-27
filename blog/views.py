@@ -6,8 +6,14 @@ from django.contrib.auth.decorators import login_required
 from allauth.account.forms import SignupForm
 from .models import Post
 from django.contrib import messages
+from django.conf import settings
 from django.contrib.admin.views.decorators import staff_member_required
 from django.utils.text import slugify
+
+
+def should_approve_user_posts():
+    print("Checking whether user posts should be approved")
+    return settings.SHOULD_APPROVE_USER_POSTS
 
 
 def signup_view(request):
@@ -80,11 +86,6 @@ class PostDetail(View):
                 "liked": liked
             },
         )
-
-
-def should_approve_user_posts(user):
-
-    return not user.is_staff
 
 
 @login_required
