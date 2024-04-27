@@ -4,21 +4,10 @@ from django.http import HttpResponseRedirect
 from .forms import CommentForm, PostForm
 from django.contrib.auth.decorators import login_required
 from allauth.account.forms import SignupForm
-# from django.contrib.auth import views as auth_views
-# from django.contrib.auth.decorators import user_passes_test
-# from django.utils.safestring import mark_safe
-# from django.urls import reverse
 from .models import Post
 from django.contrib import messages
 from django.contrib.admin.views.decorators import staff_member_required
-from django.conf import settings
-# from django.dispatch import receiver
 from django.utils.text import slugify
-
-
-def should_approve_user_posts():
-    print("Checking whether user posts should be approved")
-    return settings.SHOULD_APPROVE_USER_POSTS
 
 
 def signup_view(request):
@@ -42,7 +31,6 @@ class PostList(generic.ListView):
 
 
 class PostDetail(View):
-
     def get(self, request, slug, *args, **kwargs):
         queryset = Post.objects.filter(status=1)
         post = get_object_or_404(queryset, slug=slug)
@@ -62,12 +50,6 @@ class PostDetail(View):
                 "comment_form": CommentForm()
             },
         )
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['comment_form'] = CommentForm()
-        context['post_form'] = PostForm()
-        return context
 
     def post(self, request, slug, *args, **kwargs):
         queryset = Post.objects.filter(status=1)
@@ -100,43 +82,32 @@ class PostDetail(View):
         )
 
 
+def should_approve_user_posts(user):
+
+    return not user.is_staff
+
+
 @login_required
 def dashboard_view(request):
-    print(
-        "SHOULD_APPROVE_USER_POSTS setting:",
-        settings.SHOULD_APPROVE_USER_POSTS
-    )
-
     if request.method == 'POST':
         post_form = PostForm(request.POST, request.FILES)
         if post_form.is_valid():
             post = post_form.save(commit=False)
             post.author = request.user
-
-            # Set the slug before saving
             if not post.slug or post.slug == 'placeholder':
                 post.slug = slugify(post.title)
-
-                # Make the slug unique
                 if Post.objects.filter(slug=post.slug).exists():
                     post.slug = f"{post.slug}-{post.id}"
-
-            print("Generated Slug:", post.slug)
-
             if should_approve_user_posts():
-                print("User posts need approval.")
                 post.approved = False
                 messages.success(
                     request,
                     'Post created and awaiting approval!'
                 )
             else:
-                print("User posts do not need approval.")
-                post.approved = True  # Approve the post automatically
+                post.approved = True
                 messages.success(request, 'Post created successfully!')
-
             post.save()
-
             return redirect('home')
         else:
             messages.error(
@@ -146,9 +117,7 @@ def dashboard_view(request):
     else:
         post_form = PostForm()
 
-    # Retrieve all posts created by the user, regardless of approval status
     user_posts = Post.objects.filter(author=request.user)
-
     return render(
         request,
         'dashboard.html',
@@ -158,7 +127,6 @@ def dashboard_view(request):
 
 def edit_post(request, post_id):
     post = get_object_or_404(Post, id=post_id, author=request.user)
-
     if request.method == 'POST':
         form = PostForm(request.POST, instance=post)
         if form.is_valid():
@@ -166,17 +134,14 @@ def edit_post(request, post_id):
             return redirect('post_detail', slug=post.slug)
     else:
         form = PostForm(instance=post)
-
     return render(request, 'edit_post.html', {'form': form, 'post': post})
 
 
 def delete_post(request, post_id):
     post = get_object_or_404(Post, id=post_id, author=request.user)
-
     if request.method == 'POST':
         post.delete()
         return redirect('home')
-
     return render(request, 'delete_post.html', {'post': post})
 
 
@@ -185,7 +150,6 @@ def post_approval_view(request):
     if request.method == 'POST':
         post_id = request.POST.get('post_id')
         action = request.POST.get('action')
-
         post = get_object_or_404(Post, id=post_id)
         if action == 'approve':
             post.approved = True
@@ -194,9 +158,7 @@ def post_approval_view(request):
         elif action == 'reject':
             post.delete()
             messages.success(request, 'Post rejected successfully!')
-
     pending_posts = Post.objects.filter(approved=False)
-
     return render(
         request,
         'post_approval.html',
@@ -211,5 +173,4 @@ class PostLike(View):
             post.likes.remove(request.user)
         else:
             post.likes.add(request.user)
-
         return HttpResponseRedirect(reverse('post_detail', args=[slug]))

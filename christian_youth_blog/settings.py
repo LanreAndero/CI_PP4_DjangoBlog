@@ -15,10 +15,10 @@ from pathlib import Path
 from django.contrib.messages import constants as messages
 import cloudinary
 import cloudinary.uploader
-import cloudinary.api
+import cloudinary.api  # noqa
 import dj_database_url
 if os.path.isfile("env.py"):
-    import env
+    import env  # noqa
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,11 +26,11 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     'cy-django-blog-486df1fc929f.herokuapp.com',
-    '8000-lanreandero-cipp4django-b42ah2no9xi.ws-eu108.gitpod.io',
+    '8000-lanreandero-cipp4django-z0926ut9dsq.ws-eu110.gitpod.io',
     'localhost',
     "http://127.0.0.1:8000",
     "http://localhost:3000",
@@ -80,12 +80,19 @@ MESSAGE_TAGS = {
     messages.ERROR: 'alert-danger',
 }
 
-cloudinary.config(
-    cloud_name='dmwocs4qe',
-    api_key='134374111236266',
-    api_secret='Jq2ddAoUbCj59Epng85km0hojOA',
-    secure=True,
-)
+# cloudinary.config(
+#     cloud_name='dmwocs4qe',
+#     api_key='134374111236266',
+#     api_secret='Jq2ddAoUbCj59Epng85km0hojOA',
+#     secure=True,
+# )
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dmwocs4qe',
+    'API_KEY': '134374111236266',
+    'API_SECRET': 'Jq2ddAoUbCj59Epng85km0hojOA',
+    'SECURE': 'True',
+}
 
 DJANGO_SUMMERNOTE_CONFIG = {
     'iframe': False,
@@ -146,7 +153,7 @@ DATABASES = {'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))}
 
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://8000-lanreandero-cipp4django-b42ah2no9xi.ws-eu108.gitpod.io",
+    "https://8000-lanreandero-cipp4django-z0926ut9dsq.ws-eu110.gitpod.io",
     "cy-django-blog-486df1fc929f.herokuapp.com"
     "https://*.herokuapp.com",
     "https://*.gitpod.io",
@@ -154,7 +161,7 @@ CSRF_TRUSTED_ORIGINS = [
 
 
 CORS_ALLOWED_ORIGINS = [
-    "https://8000-lanreandero-cipp4django-b42ah2no9xi.ws-eu108.gitpod.io",
+    "https://8000-lanreandero-cipp4django-z0926ut9dsq.ws-eu110.gitpod.io",
     "cy-django-blog-486df1fc929f.herokuapp.com"
     "https://*.herokuapp.com",
     "https://*.gitpod.io",
