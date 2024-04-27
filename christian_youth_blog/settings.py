@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 from pathlib import Path
 from django.contrib.messages import constants as messages
-# import django_heroku
 # import cloudinary
 # import cloudinary.uploader
 # import cloudinary.api
@@ -88,11 +87,11 @@ MESSAGE_TAGS = {
 #     secure=True,
 # )
 
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'dmwocs4qe',
-    'API_KEY': '134374111236266',
-    'API_SECRET': 'Jq2ddAoUbCj59Epng85km0hojOA',
-}
+# CLOUDINARY_STORAGE = {
+#     'CLOUD_NAME': 'dmwocs4qe',
+#     'API_KEY': '134374111236266',
+#     'API_SECRET': 'Jq2ddAoUbCj59Epng85km0hojOA',
+# }
 
 DJANGO_SUMMERNOTE_CONFIG = {
     'iframe': False,
@@ -216,6 +215,7 @@ STATICFILES_STORAGE = (
     'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
 )
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
