@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container-search">
+    <div class="row justify-content-center" style="margin-right: 0; margin-left: 0;">
+        <div class="col-md-8">
+            <h1 class="text-center">Search Results</h1>
+            <p class="text-center">Showing results for: "{{ query }}"</p>
+            <hr>
+            {% if results %}
+                <ul class="list-unstyled">
+                    {% for post in results %}
+                        <li><a href="{% url 'post_detail' post.slug %}">{{ post.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="text-center">No results found.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

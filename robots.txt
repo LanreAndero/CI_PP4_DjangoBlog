@@ -1,2 +1,3 @@
 User-agent: *
-Disallow:
+Disallow: /admin/
+Sitemap: https://cy-django-blog-486df1fc929f.herokuapp.com///sitemap.xml

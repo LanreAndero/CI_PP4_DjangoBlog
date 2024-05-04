@@ -1,22 +1,50 @@
 from django import forms
-from django_summernote.widgets import SummernoteWidget
 from .models import Post, Comment, Category, Tag
+from ckeditor.fields import RichTextField
 
 
 class PostForm(forms.ModelForm):
     categories = forms.ModelMultipleChoiceField(
-        queryset=Category.objects.all()
+        queryset=Category.objects.all(),
+        widget=forms.SelectMultiple(attrs={'class': 'form-control'})
     )
-    tags = forms.ModelMultipleChoiceField(queryset=Tag.objects.all())
+    tags = forms.ModelMultipleChoiceField(
+        queryset=Tag.objects.all(),
+        widget=forms.SelectMultiple(attrs={'class': 'form-control'})
+    )
     is_featured = forms.BooleanField(required=False)
+
+    content = RichTextField()
 
     class Meta:
         model = Post
         fields = [
-            'title', 'slug', 'author', 'featured_image',
-            'excerpt', 'content', 'status'
+            'title', 'author', 'content', 'categories', 'tags',
+            'is_featured', 'featured_image'
         ]
-        widgets = {'content': SummernoteWidget()}
+
+        labels = {
+            'title': 'Title',
+            'author': 'Author',
+            'content': 'Content',
+            'categories': 'Category',
+            'tags': 'Tags',
+            'is_featured': 'Is Featured',
+            'featured_image': 'Featured Image'
+        }
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control'}),
+            'author': forms.HiddenInput(),
+            'content': RichTextField(),
+            'featured_image': forms.ClearableFileInput(
+                attrs={'class': 'form-control'}
+            ),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(PostForm, self).__init__(*args, **kwargs)
+        self.fields['categories'].required = True
+        self.fields['tags'].required = True
 
 
 class CommentForm(forms.ModelForm):

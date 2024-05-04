@@ -25,6 +25,10 @@ def about_view(request):
     return render(request, 'about.html')
 
 
+def index_view(request):
+    return render(request, 'index.html')
+
+
 class PostList(generic.ListView):
     model = Post
     queryset = (
@@ -32,7 +36,7 @@ class PostList(generic.ListView):
         .filter(status=1, approved=True)
         .order_by("-created_on")
     )
-    template_name = "index.html"
+    template_name = "blog.html"
     paginate_by = 6
 
 
@@ -89,7 +93,7 @@ class PostDetail(View):
 
 
 @login_required
-def dashboard_view(request):
+def add_post_view(request):
     if request.method == 'POST':
         post_form = PostForm(request.POST, request.FILES)
         if post_form.is_valid():
@@ -102,47 +106,49 @@ def dashboard_view(request):
             if should_approve_user_posts():
                 post.approved = False
                 messages.success(
-                    request,
-                    'Post created and awaiting approval!'
+                    request, 'Post created and awaiting approval!'
                 )
             else:
                 post.approved = True
                 messages.success(request, 'Post created successfully!')
             post.save()
-            return redirect('home')
+            return redirect('blog')
         else:
             messages.error(
-                request,
-                'Error creating post. Please check the form.'
+                request, 'Error creating post. Please check the form.'
             )
     else:
         post_form = PostForm()
 
     user_posts = Post.objects.filter(author=request.user)
     return render(
-        request,
-        'dashboard.html',
+        request, 'add_post.html',
         {'post_form': post_form, 'user_posts': user_posts}
     )
 
 
 def edit_post(request, post_id):
     post = get_object_or_404(Post, id=post_id, author=request.user)
+
     if request.method == 'POST':
-        form = PostForm(request.POST, instance=post)
+        form = PostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
             form.save()
             return redirect('post_detail', slug=post.slug)
     else:
         form = PostForm(instance=post)
-    return render(request, 'edit_post.html', {'form': form, 'post': post})
+
+    return render(
+        request, 'edit_post.html',
+        {'form': form, 'post': post}
+    )
 
 
 def delete_post(request, post_id):
     post = get_object_or_404(Post, id=post_id, author=request.user)
     if request.method == 'POST':
         post.delete()
-        return redirect('home')
+        return redirect('post_detail')
     return render(request, 'delete_post.html', {'post': post})
 
 
@@ -174,4 +180,17 @@ class PostLike(View):
             post.likes.remove(request.user)
         else:
             post.likes.add(request.user)
-        return HttpResponseRedirect(reverse('post_detail', args=[slug]))
+        return HttpResponseRedirect(
+            reverse('post_detail', args=[slug])
+        )
+
+
+def search(request):
+    query = request.GET.get('q')
+    if query:
+        results = Post.objects.filter(title__icontains=query)
+    else:
+        results = None
+    return render(
+        request, 'search_results.html', {'results': results, 'query': query}
+    )

@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
+from ckeditor.fields import RichTextField
 
 
 STATUS = ((0, "Draft"), (1, "Published"))
@@ -52,14 +53,12 @@ class Post(models.Model):
     featured_image = CloudinaryField('image', default='placeholder')
     excerpt = models.TextField(blank=True)
     updated_on = models.DateTimeField(auto_now=True)
-    content = models.TextField()
+    content = RichTextField()
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
     likes = models.ManyToManyField(
-        User,
-        related_name='blogpost_like',
-        blank=True
-    )
+        User, related_name='blog_post_likes', blank=True)
+
     approved = models.BooleanField(default=False)
     categories = models.ManyToManyField(Category, through='PostCategory')
     tags = models.ManyToManyField(Tag, through='PostTag')

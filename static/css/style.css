@@ -17,7 +17,7 @@ body {
     font-weight: bold;
 }
 
-#navbarText .navbar-text.mx-auto {
+.home-text.mx-auto {
     color: red;
     font-weight: bold;
     text-align: center;
@@ -226,4 +226,43 @@ body {
 
 footer {
     background-color: #97928d;
+    position: relative;
 }
+
+.container-search {
+    margin-top: 50px;
+    width: 50%;
+}
+
+.container-mt-3{
+    display: flex;
+    justify-content: center;
+}
+
+.form-control {
+    padding-right: 40px;
+}
+
+.input-group {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.input-group-append {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+@media (max-width: 576px) {
+    .navbar-nav .nav-item.dropdown .dropdown-menu {
+      position: static;
+      float: none;
+      width: auto;
+      margin-top: 0;
+      box-shadow: none;
+    }
+  }

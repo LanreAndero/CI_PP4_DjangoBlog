@@ -1,33 +1,22 @@
 from django.urls import path
 from allauth.account.views import SignupView
-from .views import (
-    about_view,
-    dashboard_view,
-    edit_post,
-    delete_post,
-    post_approval_view,
-    PostList,
-    PostDetail,
-    PostLike,
-)
+from . import views
+from .views import edit_post, delete_post
+
 
 urlpatterns = [
-    # Public URLs
-    path('about/', about_view, name='about'),
-    path('', PostList.as_view(), name='home'),
-    path('detail/<slug:slug>/', PostDetail.as_view(), name='post_detail'),
-
-    # User Authentication URLs
+    path('', views.index_view, name='home'),
+    path('about/', views.about_view, name='about'),
+    path('search/', views.search, name='search'),
     path('accounts/signup/', SignupView.as_view(), name='account_signup'),
-
-    # User Dashboard URLs
-    path('dashboard/', dashboard_view, name='dashboard'),
-
-    # Post Management URLs
-    path('post-approval/', post_approval_view, name='post_approval'),
-    path('edit/<int:post_id>/', edit_post, name='edit_post'),
-    path('delete/<int:post_id>/', delete_post, name='delete_post'),
-
-    # Like/Dislike Post URLs
-    path('like/<slug:slug>/', PostLike.as_view(), name='post_like'),
+    path('post-list/', views.PostList.as_view(), name='post_list'),
+    path(
+        'post-detail/<slug:slug>/',
+        views.PostDetail.as_view(), name='post_detail'
+    ),
+    path('add-post/', views.add_post_view, name='add_post'),
+    path('post-approval/', views.post_approval_view, name='post_approval'),
+    path('edit_post/<int:post_id>/', edit_post, name='edit_post'),
+    path('delete_post/<int:post_id>/', delete_post, name='delete_post'),
+    path('post-like/<slug:slug>/', views.PostLike.as_view(), name='post_like'),
 ]
