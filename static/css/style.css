@@ -257,12 +257,6 @@ footer {
     transform: translateY(-50%);
 }
 
-@media (max-width: 576px) {
-    .navbar-nav .nav-item.dropdown .dropdown-menu {
-      position: static;
-      float: none;
-      width: auto;
-      margin-top: 0;
-      box-shadow: none;
-    }
-  }
+#container {
+    margin-top: 30px;
+}

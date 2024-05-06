@@ -15,7 +15,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = [
     'cy-django-blog-486df1fc929f.herokuapp.com',
-    '8000-lanreandero-cipp4django-z0926ut9dsq.ws-eu111.gitpod.io',
+    '8000-lanreandero-cipp4django-z0926ut9dsq.ws-eu113.gitpod.io',
     'localhost'
 ]
 
@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'django_summernote',
     'blog',
-    'ckeditor',
 ]
 
 SITE_ID = 1
@@ -61,14 +60,6 @@ MESSAGE_TAGS = {
     messages.SUCCESS: 'alert-success',
     messages.WARNING: 'alert-warning',
     messages.ERROR: 'alert-danger',
-}
-
-CKEDITOR_CONFIGS = {
-    'default': {
-        'toolbar': 'full',
-        'height': 300,
-        'width': '100%',
-    },
 }
 
 CSRF_COOKIE_SECURE = True
@@ -128,6 +119,7 @@ CORS_ALLOWED_ORIGINS = [
     "https://ui.dev",
 ]
 
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 SHOULD_APPROVE_USER_POSTS = True
 

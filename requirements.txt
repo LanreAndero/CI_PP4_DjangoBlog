@@ -7,7 +7,6 @@ dj-database-url==2.1.0
 dj3-cloudinary-storage==0.0.6
 Django==5.0.1
 django-allauth==0.60.1
-django-ckeditor==6.7.1
 django-ckeditor5==0.0.4
 django-cloudinary-storage==0.3.0
 django-cors-headers==4.3.1

@@ -1,6 +1,5 @@
 from django import forms
 from .models import Post, Comment, Category, Tag
-from ckeditor.fields import RichTextField
 
 
 class PostForm(forms.ModelForm):
@@ -14,7 +13,7 @@ class PostForm(forms.ModelForm):
     )
     is_featured = forms.BooleanField(required=False)
 
-    content = RichTextField()
+    content = forms.Textarea()
 
     class Meta:
         model = Post
@@ -35,7 +34,9 @@ class PostForm(forms.ModelForm):
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'author': forms.HiddenInput(),
-            'content': RichTextField(),
+            'content': forms.Textarea(
+                attrs={'class': 'form-control', 'rows': 10}
+            ),
             'featured_image': forms.ClearableFileInput(
                 attrs={'class': 'form-control'}
             ),
