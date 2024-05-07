@@ -15,7 +15,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = [
     'cy-django-blog-486df1fc929f.herokuapp.com',
-    '8000-lanreandero-cipp4django-z0926ut9dsq.ws-eu113.gitpod.io',
+    '8000-lanreandero-cipp4django-z0926ut9dsq.ws-eu111.gitpod.io',
     'localhost'
 ]
 

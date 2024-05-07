@@ -9,7 +9,7 @@ urlpatterns = [
     path('about/', views.about_view, name='about'),
     path('search/', views.search, name='search'),
     path('accounts/signup/', SignupView.as_view(), name='account_signup'),
-    # path('post-list/', views.PostList.as_view(), name='post_list'),
+    path('post-list/', views.PostList.as_view(), name='post_list'),
     path(
         'post-detail/<slug:slug>/',
         views.PostDetail.as_view(), name='post_detail'
