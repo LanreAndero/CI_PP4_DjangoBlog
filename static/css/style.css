@@ -80,7 +80,7 @@ body {
 }
 
 .masthead-text {
-    background-color: aliceblue;
+    background-color: #4b5053;
     position: relative;
     color: white;
 }
@@ -115,16 +115,16 @@ body {
 
 .post-title {
     margin-top: 20%;
-    margin-left: 5%;
+    margin-left: 10%;
 }
 
 .post-subtitle {
-    margin-left: 5%;
+    margin-left: 10%;
     color: lightgray;
 }
 
 .tags {
-    margin-left: 5%;
+    margin-left: 10%;
 }
 
 .btn-signup {
