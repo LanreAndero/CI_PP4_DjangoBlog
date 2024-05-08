@@ -74,7 +74,7 @@ body {
 }
 
 .masthead {
-    margin-top: 30px;
+    margin-top: 50px;
     overflow: hidden;
     position: relative;
     display: inline-block;
@@ -121,12 +121,10 @@ body {
 }
 
 .post-subtitle {
-    margin-left: 10%;
     color: #094c87;
 }
 
 .tags {
-    margin-left: 10%;
     color: #445261;
 }
 
