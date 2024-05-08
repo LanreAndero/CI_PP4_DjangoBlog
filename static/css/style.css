@@ -114,17 +114,18 @@ body {
 }
 
 .post-title {
-    margin-top: 20%;
-    margin-left: 10%;
+    margin-top: 30%;
+    color: white;
 }
 
 .post-subtitle {
     margin-left: 10%;
-    color: lightgray;
+    color: antiquewhite;
 }
 
 .tags {
     margin-left: 10%;
+    color: white;
 }
 
 .btn-signup {
