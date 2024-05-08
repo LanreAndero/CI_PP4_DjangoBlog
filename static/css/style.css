@@ -67,7 +67,10 @@ body {
 }
 
 #detail {
+    background-color: #445261;
     height: 50vh;
+    text-align: center;
+
 }
 
 .masthead {
@@ -80,8 +83,6 @@ body {
 }
 
 .masthead-text {
-    background-color: #445261;
-    text-align: center;
     position: relative;
     color: white;
 }
