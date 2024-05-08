@@ -66,12 +66,12 @@ body {
     text-transform: uppercase;
 }
 
-#post-detail {
-    height: 60vh;
+#detail {
+    height: 50vh;
 }
 
 .masthead {
-    margin-top: 10px;
+    margin-top: 30px;
     overflow: hidden;
     position: relative;
     display: inline-block;
@@ -80,8 +80,9 @@ body {
 }
 
 .masthead-text {
-    background-color: silver;
+    background-color: aliceblue;
     position: relative;
+    color: white;
 }
 
 .masthead-image {
@@ -119,11 +120,11 @@ body {
 
 .post-subtitle {
     margin-left: 5%;
-    color: blue;
+    color: lightgray;
 }
 
 .tags {
-    margin-left: 27px;
+    margin-left: 5%;
 }
 
 .btn-signup {
