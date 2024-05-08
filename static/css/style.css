@@ -67,8 +67,8 @@ body {
 }
 
 #detail {
-    background-color: #445261;
     height: 50vh;
+    font-weight: 800;
     text-align: center;
 
 }
@@ -84,7 +84,7 @@ body {
 
 .masthead-text {
     position: relative;
-    color: white;
+    color: #445261;
 }
 
 .masthead-image {
@@ -116,18 +116,18 @@ body {
 }
 
 .post-title {
-    margin-top: 30%;
-    color: white;
+    margin-top: 80%;
+    color: #445261;
 }
 
 .post-subtitle {
     margin-left: 10%;
-    color: antiquewhite;
+    color: #2c1b04;
 }
 
 .tags {
     margin-left: 10%;
-    color: white;
+    color: #445261;
 }
 
 .btn-signup {
