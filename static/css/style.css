@@ -66,6 +66,10 @@ body {
     text-transform: uppercase;
 }
 
+#post-detail {
+    height: 60vh;
+}
+
 .masthead {
     margin-top: 10px;
     overflow: hidden;
@@ -77,7 +81,6 @@ body {
 
 .masthead-text {
     background-color: silver;
-    color: white;
     position: relative;
 }
 
