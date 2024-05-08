@@ -83,7 +83,6 @@ body {
 }
 
 .masthead-text {
-    margin-top: 80px;
     position: relative;
     color: #445261;
 }
@@ -117,7 +116,7 @@ body {
 }
 
 .post-title {
-    margin-top: 80%;
+    margin-top: 80px;
     color: #445261;
 }
 
