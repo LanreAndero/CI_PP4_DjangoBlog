@@ -265,25 +265,25 @@ footer {
 }
 
 @media screen and (max-width: 1199px) {
-    .masthead-text {
+    .col-md-6.masthead-text {
         margin: 100px;
     }
 }
 
 @media screen and (max-width: 991px) {
-    .masthead-text {
+    .col-md-6.masthead-text {
         margin: 100px;
     }
 }
 
 @media screen and (max-width: 767px) {
-    .masthead-text {
+    .col-md-6.masthead-text {
         margin: 100px;
     }
 }
 
 @media screen and (max-width: 575px) {
-    .masthead-text {
+    .col-md-6.masthead-text {
         margin: 100px;
     }
 }
