@@ -104,7 +104,7 @@ DATABASES = {'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))}
 
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://8000-lanreandero-cipp4django-z0926ut9dsq.ws-eu110.gitpod.io",
+    "https://8000-lanreandero-cipp4django-z0926ut9dsq.ws-eu111.gitpod.io",
     "cy-django-blog-486df1fc929f.herokuapp.com"
     "https://*.herokuapp.com",
     "https://*.gitpod.io",
@@ -112,12 +112,30 @@ CSRF_TRUSTED_ORIGINS = [
 
 
 CORS_ALLOWED_ORIGINS = [
-    "https://8000-lanreandero-cipp4django-z0926ut9dsq.ws-eu110.gitpod.io",
+    "https://8000-lanreandero-cipp4django-z0926ut9dsq.ws-eu111.gitpod.io",
     "cy-django-blog-486df1fc929f.herokuapp.com"
     "https://*.herokuapp.com",
     "https://*.gitpod.io",
     "https://ui.dev",
 ]
+
+DJANGO_SUMMERNOTE_CONFIG = {
+    'iframe': False,
+    'summernote': {
+        'width': '100%',
+        'height': '480',
+        'toolbar': [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['fontname', ['fontname']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video']],
+            ['view', ['fullscreen', 'codeview']],
+        ],
+    },
+}
 
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 

@@ -85,7 +85,6 @@ body {
 .masthead-text {
     position: relative;
     color: #445261;
-    margin-top: 80px;
 }
 
 .masthead-image {
@@ -263,4 +262,28 @@ footer {
     right: 10px;
     top: 50%;
     transform: translateY(-50%);
+}
+
+@media screen and (max-width: 1199px) {
+    .masthead-text {
+        margin: 100px;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .masthead-text {
+        margin: 100px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .masthead-text {
+        margin: 100px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .masthead-text {
+        margin: 100px;
+    }
 }
