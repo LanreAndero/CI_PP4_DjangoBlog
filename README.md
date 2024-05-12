@@ -130,9 +130,9 @@ Christian Youth Blog is a platform aims to provide a space for Christian youth t
 16. As a Site Admin, I can approve or disapprove posts so that I can filter out objectionable posts
 
 <details><summary>Site Admin Rights</summary>
-<img src="docs/features/admin-approved-comment.jpg">
+<img src="docs/features/admin-approved-comments.png">
 <img src="docs/features/admin-approved-posts.png">
-<img src="docs/features/admin-unapproved-comment.jpg">
+<img src="docs/features/admin-unapproved-comments.png">
 <img src="docs/features/admin-unapproved-posts.jpg">
 </details>
 
@@ -421,15 +421,11 @@ The W3C Markup Validation Service
 <img src="docs/validation/html/html-validation.png">
 </details>
 
-<details><summary>Register</summary>
-<img src="docs/validation/css/css-validation.png">
-</details>
-
 ### CSS Validation
 The W3C Jigsaw CSS Validation Service
 
 <details><summary>Style.css</summary>
-<img src="docs/validation/validation-css.png">
+<img src="docs/validation/css/css-validation.png">
 </details><hr>
 
 ### JavaScript Validation
@@ -483,7 +479,7 @@ PEP8 Validation Service used to check the code for PEP8 requirements via CI Pyth
 </details>
 
 <details><summary>urls.py</summary>
-<img src="docs/validation/py/blog-urlsvalidation.png">
+<img src="docs/validation/py/blog-urls-validation.png">
 </details>
 
 <details><summary>views.py</summary>
@@ -638,8 +634,10 @@ Performance, best practices and SEO was tested using Lighthouse.
 <img src="docs/manual-testing/admin-add-post.png">
 <img src="docs/manual-testing/admin-approved-posts.png">
 <img src="docs/manual-testing/admin-unapproved-posts.jpg">
-<img src="docs/features/admin-edit-post.png">
-<img src="docs/features/admin-delete-post.png">
+<img src="docs/manual-testing/admin-edit-post.png">
+<img src="docs/manual-testing/admin-delete-post.png">
+<img src="docs/manual-testing/admin-delete-objects.png">
+<img src="docs/manual-testing/admin-delete-success.png">
 <img src="docs/manual-testing/admin-comments-page.png">
 <img src="docs/features/comment-awaiting-approval.png">
 <img src="docs/manual-testing/admin-approved-comment.jpg">
@@ -689,7 +687,7 @@ Performance, best practices and SEO was tested using Lighthouse.
 
 </details>
 
-10. As a User I can view the site's blog so that I can learn additional information and read articles
+9. As a User I can view the site's blog so that I can learn additional information and read articles
 
 **Step** | **Expected Result** | **Actual Result**
 ------------ | ------------ | ------------ |
@@ -702,7 +700,7 @@ Performance, best practices and SEO was tested using Lighthouse.
 
 </details>
 
-11. As a Site Owner I can validate data entered into my site so that all submitted data is correct to avoid errors
+10. As a Site Owner I can validate data entered into my site so that all submitted data is correct to avoid errors
 
 **Step** | **Expected Result** | **Actual Result**
 ------------ | ------------ | ------------ |
@@ -717,7 +715,7 @@ Performance, best practices and SEO was tested using Lighthouse.
 
 </details>
 
-12. As a User I can view blog posts page by page so that I can browse without seeing an overloaded page
+11. As a User I can view blog posts page by page so that I can browse without seeing an overloaded page
 
 **Step** | **Expected Result** | **Actual Result**
 ------------ | ------------ | ------------ |
