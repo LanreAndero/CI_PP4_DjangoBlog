@@ -134,6 +134,7 @@ def edit_post(request, post_id):
         form = PostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Post edited successfully!')
             return redirect('post_detail', slug=post.slug)
     else:
         form = PostForm(instance=post)
@@ -148,7 +149,7 @@ def delete_post(request, post_id):
     post = get_object_or_404(Post, id=post_id, author=request.user)
     if request.method == 'POST':
         post.delete()
-        return redirect('post_detail')
+        return redirect('blog')
     return render(request, 'delete_post.html', {'post': post})
 
 
